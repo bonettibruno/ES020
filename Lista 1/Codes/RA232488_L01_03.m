@@ -11,7 +11,7 @@ figure;
 plot(temperatura, viscosidade, "-s", "MarkerEdgeColor", "r", "MarkerFaceColor",[255/255, 165/255, 0/255]);
 hold on;
 
-vetor_temperatura = [0:1:400];
+vetor_temperatura = 0:1:400;
 funcao_viscosidade = 1.0074 * exp(-0.0232 * vetor_temperatura);
 plot(vetor_temperatura, funcao_viscosidade, ':', 'Color', [0.5, 0.5, 0.5], 'LineWidth', 2.5);
 
