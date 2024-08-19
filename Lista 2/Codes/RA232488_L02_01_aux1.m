@@ -6,6 +6,11 @@ function [atan_x] = RA232488_L02_01_aux1(x, eps)
     n = 1;
     negativo = false;
     maior_que_1 = false;
+
+    if x == 0
+        atan_x = 0;
+        return;
+    end
     
     if (x < 0)
         negativo = true;
@@ -18,7 +23,7 @@ function [atan_x] = RA232488_L02_01_aux1(x, eps)
     end
 
 
-    while ( (x^n)/n > eps )
+    while ( (x^n)/n < eps )
     
         if (mod(n, 2) == 1)
             if (soma == true)

@@ -2,29 +2,28 @@ function RA232488_L02_01
 
     clc; clear all; close all force;
 
-    % Define o vetor de valores de x
-    x_values = -10:10;
-    % Prealoca os vetores para armazenar os resultados
-    atan_x_values = zeros(size(x_values));
-    erro_values = zeros(size(x_values));
+    vetor_x = -10:10;
 
-    for i = 1:length(x_values)
-        x = x_values(i);
-        atan_x_values(i) = RA232488_L02_01_aux1(x, eps);
-        erro_values(i) = atan_x_values(i) - atan(x);
+    atan_x = zeros(size(vetor_x));
+    erro = zeros(size(vetor_x));
+
+    for i = 1:length(vetor_x)
+        x = vetor_x(i);
+        atan_x(i) = RA232488_L02_01_aux1(x, eps);
+        erro(i) = atan_x(i) - atan(x);
     end
 
     figure;
     yyaxis left
-    plot(x_values, atan_x_values, 'b-', 'LineWidth', 1.5) % Gráfico de atan_x
-    ylabel('atan\_x')
+    plot(vetor_x, atan_x, 'b')
+    ylabel('atan(x)')
 
     yyaxis right
-    plot(x_values, erro_values, 'r-', 'LineWidth', 1.5) % Gráfico do erro
-    ylabel('Erro')
+    plot(vetor_x, erro, 'r')
+    ylabel('erro(x)')
 
     xlabel('x')
-    title('Comparação entre atan\_x e erro')
+    title('atan(x) e erro(x)')
     grid on
 
 end
