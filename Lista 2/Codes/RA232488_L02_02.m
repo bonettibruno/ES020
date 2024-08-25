@@ -7,5 +7,7 @@ function RA232488_L02_02
     plot(t, v);
     xlabel('t');
     ylabel('v(t)');
+    title("Gráfico de v(t)");
+    xlim([-5;50]);
 
 end

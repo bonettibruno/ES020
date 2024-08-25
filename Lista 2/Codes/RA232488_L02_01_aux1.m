@@ -6,8 +6,9 @@ function [atan_x] = RA232488_L02_01_aux1(x, eps)
     n = 1;
     negativo = false;
     maior_que_1 = false;
+    iteracoes_maximo = 10000;
 
-    if x == 0
+    if (x == 0)
         atan_x = 0;
         return;
     end
@@ -22,19 +23,26 @@ function [atan_x] = RA232488_L02_01_aux1(x, eps)
         x = 1/x;
     end
 
+    iteracoes = 0;
+    termo = x;
 
-    while ( (x^n)/n < eps )
-    
-        if (mod(n, 2) == 1)
-            if (soma == true)
-                atan_x = atan_x + (x^n)/n;
-                soma = false;
-            else 
-                atan_x = atan_x - (x^n)/n;
-                soma = true;
-            end
+    while (termo/n > eps)
+        iteracoes = iteracoes + 1;
+
+        if (soma)
+            atan_x = atan_x + termo/n;
+            soma = false;
+        else
+            atan_x = atan_x - termo/n;
+            soma = true;
         end
-        n = n + 1; 
+
+        termo = termo * x * x;
+        n = n + 2;
+
+        if iteracoes > iteracoes_maximo
+            break;
+        end
     end
 
     if (maior_que_1 == true)
