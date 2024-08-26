@@ -1,4 +1,4 @@
-function [H] = RA232488_L01_02()
+function [H] = RA232488_L03_02()
     %funcao que calcula a altura necessaria da coluna de agua H
 
     clc; clear all; close all;
