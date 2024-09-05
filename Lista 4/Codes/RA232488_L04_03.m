@@ -9,8 +9,7 @@ function [i] = RA232488_L04_03()
         [A, b] = RA232488_L04_03_aux1(R);
         solucao = A\b;
 
-        i = [i; solucao];
+        i = [i, solucao];
 
     end
-    
 end
