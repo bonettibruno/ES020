@@ -11,6 +11,6 @@ function [ri] = RA232488_L06_01()
     
     T = @(ri) T_air + q/(2*pi) * (1/k * log((r_w + ri)/r_w) + 1/h * 1/(r_w + ri));
 
-    ri = fminbnd(T, 0, 0.1);
+    ri = fminbnd(T, 0, 0.05);
    
 end
