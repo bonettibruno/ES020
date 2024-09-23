@@ -1,5 +1,7 @@
 function [delta_s,acel] = RA232488_L07_02()
-    
+
+    clc; clear all; close all;
+
     %dados do enunciado
     p = [0.4, 1.2, 0.8, 0];
     
