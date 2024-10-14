@@ -7,44 +7,58 @@ function [v_200, a_200, v_206, a_206, v_210, a_210] = RA232488_L10_03()
     theta = [0.75, 0.72, 0.70, 0.68, 0.67, 0.66];
     r = [5120, 5370, 5560, 5800, 6030, 6240];
     
-     dr_dt = diff(r) ./ diff(t); % aproximação de \dot{r}
-    dtheta_dt = diff(theta) ./ diff(t); % aproximação de \dot{\theta}
+    derivada_r = diff(r) ./ diff(t);
+    derivada_theta = diff(theta) ./ diff(t);
     
-    % Aproximação das segundas derivadas (\ddot{r} e \ddot{\theta})
-    d2r_dt2 = diff(dr_dt) ./ diff(t(1:end-1)); % \ddot{r}
-    d2theta_dt2 = diff(dtheta_dt) ./ diff(t(1:end-1)); % \ddot{\theta}
+    derivada_segunda_r = diff(derivada_r) ./ diff(t(1:end-1));
+    derivada_segunda_theta = diff(derivada_theta) ./ diff(t(1:end-1));
     
-    % Seleção dos valores para t = 200 s, 206 s, e 210 s
-    r_200 = r(1); r_206 = r(4); r_210 = r(6);
-    theta_200 = theta(1); theta_206 = theta(4); theta_210 = theta(6);
+    %para t = 200s
+    r_200 = r(1);
+    derivada_r_200 = derivada_r(1); 
+    derivada_theta_200 = derivada_theta(1); 
+    derivada_segunda_r_200 = derivada_segunda_r(1); 
+    derivada_segunda_theta_200 = derivada_segunda_theta(1);
     
-    % Derivadas no instante t = 206 s
-    dr_206 = dr_dt(3); dtheta_206 = dtheta_dt(3); % \dot{r} e \dot{\theta}
-    d2r_206 = d2r_dt2(2); d2theta_206 = d2theta_dt2(2); % \ddot{r} e \ddot{\theta}
+    v_200_er = derivada_r_200;
+    v_200_etheta = r_200 * derivada_theta_200;
     
-    % Velocidade no instante t = 206 s
-    v_206_r = dr_206;
-    v_206_theta = r_206 * dtheta_206;
-    v_206 = [v_206_r; v_206_theta];
+    a_200_er = derivada_segunda_r_200 - r_200 * derivada_theta_200^2;
+    a_200_etheta = r_200 * derivada_segunda_theta_200 + 2 * derivada_r_200 * derivada_theta_200;
+
+    v_200 = [v_200_er; v_200_etheta];
+    a_200 = [a_200_er; a_200_etheta];
     
-    % Aceleração no instante t = 206 s
-    a_206_r = d2r_206 - r_206 * dtheta_206^2;
-    a_206_theta = r_206 * d2theta_206 + 2 * dr_206 * dtheta_206;
-    a_206 = [a_206_r; a_206_theta];
+    %para t = 206s
+    r_206 = r(4);
+    derivada_r_206 = derivada_r(3); 
+    derivada_theta_206 = derivada_theta(3); 
+    derivada_segunda_r_206 = derivada_segunda_r(2); 
+    derivada_segunda_theta_206 = derivada_segunda_theta(2);
     
-    % Velocidade e aceleração nos outros instantes (200 s e 210 s)
-    % Aproximação similar
+    v_206_er = derivada_r_206;
+    v_206_etheta = r_206 * derivada_theta_206;
     
-    % t = 200 s
-    dr_200 = dr_dt(1); dtheta_200 = dtheta_dt(1);
-    v_200_r = dr_200;
-    v_200_theta = r_200 * dtheta_200;
-    v_200 = [v_200_r; v_200_theta];
+    a_206_er = derivada_segunda_r_206 - r_206 * derivada_theta_206^2;
+    a_206_etheta = r_206 * derivada_segunda_theta_206 + 2 * derivada_r_206 * derivada_theta_206;
+
+    v_206 = [v_206_er; v_206_etheta];
+    a_206 = [a_206_er; a_206_etheta];
+
+    %para t = 210s
+    r_210 = r(6);
+    derivada_r_210 = derivada_r(5); 
+    derivada_theta_210 = derivada_theta(5); 
+    derivada_segunda_r_210 = derivada_segunda_r(4); 
+    derivada_segunda_theta_210 = derivada_segunda_theta(4);
     
-    % t = 210 s
-    dr_210 = dr_dt(5); dtheta_210 = dtheta_dt(5);
-    v_210_r = dr_210;
-    v_210_theta = r_210 * dtheta_210;
-    v_210 = [v_210_r; v_210_theta];
+    v_210_er = derivada_r_210;
+    v_210_etheta = r_210 * derivada_theta_210;
+    
+    a_210_er = derivada_segunda_r_210 - r_210 * derivada_theta_210^2;
+    a_210_etheta = r_210 * derivada_segunda_theta_210 + 2 * derivada_r_210 * derivada_theta_210;
+
+    v_210 = [v_210_er; v_210_etheta];
+    a_210 = [a_210_er; a_210_etheta];
 
 end
