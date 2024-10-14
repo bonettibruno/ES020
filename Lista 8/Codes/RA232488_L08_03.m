@@ -20,6 +20,6 @@ function [Ta, Tb] = RA232488_L08_03()
     T_x0_interp = interp1(y, T_x0, y_b);
     T_x2_interp = interp1(y, T_x2, y_b);
 
-    Tb = interp1([0, 2], [T_x0_interp, T_x2_interp], x_b);
+    Tb = interp1(y(1:2), [T_x0_interp, T_x2_interp], x_b);
 
 end
