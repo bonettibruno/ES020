@@ -8,7 +8,7 @@ function [t,y] = RA232488_L11_04()
 
     [t, y] = ode45(f, [0 1], y0);
 
-    y_analitico = sqrt(4 - (3/ exp(t.^2))) ;
+    y_analitico = sqrt(4 - (3 .* exp(- t.^2))) ;
 
     plot(t, y, 'r', t, y_analitico, 'b--');
     legend('ODE45', 'Analítico');
